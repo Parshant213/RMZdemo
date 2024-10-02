@@ -1,0 +1,90 @@
+/* * Define the size */
+.svg-indicator {
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+}
+
+/* 
+ * Add the center and the radius using the size 
+ * and `stroke-width` values.
+ */
+.svg-indicator-track,
+.svg-indicator-indication {
+  cx: 50px;
+  cy: 50px;
+  r: 40px;
+  fill: transparent;
+  stroke-width: 10px;
+}
+
+/* Some color to highlight the rings */
+.svg-indicator-track {
+  stroke: #ddd;
+  stroke-linecap: round;
+}
+
+.svg-indicator-indication {
+  stroke: #07c;
+  stroke-dasharray: 251.2px;
+  stroke-dashoffset: 188.4px;
+}
+
+.gauge {
+  width: 100%;
+  max-width: 250px;
+  font-family: "Roboto", sans-serif;
+  font-size: 32px;
+  color: #004033;
+}
+
+.gauge__body {
+  width: 100%;
+  height: 0;
+  padding-bottom: 50%;
+  background: #b4c0be;
+  position: relative;
+  border-top-left-radius: 100% 200%;
+  border-top-right-radius: 100% 200%;
+  overflow: hidden;
+}
+
+.gauge__fill {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: inherit;
+  height: 100%;
+  background: #009578;
+  transform-origin: center top;
+  transform: rotate(0.45turn);
+  transition: transform 0.2s ease-out;
+}
+
+.gauge__cover {
+  width: 75%;
+  height: 150%;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 25%;
+  box-sizing: border-box;
+}
+
+.figma {
+  position: absolute;
+  width: 195px;
+  height: 179px;
+  left: 335px;
+  top: 152px;
+
+  background: #721f1f;
+}
