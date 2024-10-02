@@ -27,7 +27,6 @@ function Scale({ heading, rangeArray }) {
               width: "100%",
               height: "5rem",
               border: "1px solid #ccc",
-              borderRadius: "1.5rem",
               backgroundColor:colour,
               borderRadius: "1.5rem",
               marginTop:'1.3rem',
