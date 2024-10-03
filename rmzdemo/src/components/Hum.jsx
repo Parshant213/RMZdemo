@@ -41,13 +41,13 @@ function Hum({colour=[],status=[],value=[]}){
   const readings = [
     {
       colour: colour[0],
-      key: "Humidity Inside",
+      key: "Hum. In",
       value: value[0] + '%',
       status: status[0],
     },
     {
         colour: colour[1],
-        key: "Humidity Outside",
+        key: "Hum. Out",
         value: value[1] + '%',
         status: status[1],
       },

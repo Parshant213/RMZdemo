@@ -24,13 +24,13 @@ function Aqi({colour=[],status=[],value=[]}){
     },
     {
         param: {key:'Aqi',range:'101-150'},
-        quality: 'Unhealthy',
+        quality: 'Poor',
         colour:'#ff7e00',
         image:unhealthy
     },
     {
         param: {key:'Aqi',range:'151-200'},
-        quality: 'Poor',
+        quality: 'Unhealthy',
         colour:'#f5051d',
         image:poor
     },

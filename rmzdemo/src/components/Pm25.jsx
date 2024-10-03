@@ -51,13 +51,13 @@ function Pm25({ colour = [], status = [], value = [] }) {
   const readings = [
     {
       colour: colour[0],
-      key: "PM 2.5 Inside ",
+      key: "PM2.5 Inside ",
       value: value[0] + " ug/m3",
       status: status[0],
     },
     {
       colour: colour[1],
-      key: "PM 2.5 Outside ",
+      key: "PM2.5 Outside ",
       value: value[1] + " ug/m3",
       status: status[1],
     },

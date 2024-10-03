@@ -48,13 +48,13 @@ function Temp({colour=[],status=[],value=[]}){
   const readings = [
     {
       colour: colour[0],
-      key: "Temperature Inside",
+      key: "Temp. In",
       value: value[0] + '°C',
       status: status[0],
     },
     {
         colour: colour[1],
-        key: "Temperature Outside",
+        key: "Temp. Out",
         value: value[1] + '°C',
       status: status[1],
       },

@@ -56,13 +56,13 @@ function Pm10({colour=[],status=[],value=[]}) {
   const readings = [
     {
       colour: colour[0],
-      key: "PM 10 Inside ",
+      key: "PM10 Inside ",
       value: value[0] + ' ug/m3',
       status: status[0],
     },
     {
       colour: colour[1],
-      key: "PM 10 outside ",
+      key: "PM10 outside ",
       value: value[1] + ' ug/m3',
       status: status[1],
     },
