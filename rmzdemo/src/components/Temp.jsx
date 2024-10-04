@@ -62,7 +62,7 @@ function Temp({colour=[],status=[],value=[]}){
     return (
         <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
         direction='horizontal'
-        gap={5}>
+        >
           <Reading parameters={readings} />
           <Scale
             heading="Temperature is measured in °C"

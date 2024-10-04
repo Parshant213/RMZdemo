@@ -36,7 +36,7 @@ function Aqi({colour=[],status=[],value=[]}){
     },
     {
         param: {key:'Aqi',range:'201-300'},
-        quality: 'Sever',
+        quality: 'Severe',
         colour:'#8f3f97',
         image:sever
     },
@@ -54,7 +54,7 @@ const readings = [{
     return(
      <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
      direction='horizontal'
-     gap={5}>
+     >
        <Reading parameters={readings}/>
        <Scale heading='AIR QUALITY INDEX (AQI)' rangeArray={array} />
     </Stack>

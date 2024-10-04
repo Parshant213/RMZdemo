@@ -12,42 +12,42 @@ function Pm10({colour=[],status=[],value=[]}) {
   const array = [
     {
       
-      param: { key: "PM 10", range: "0-54" },
+      param: { key: "PM10", range: "0-54" },
       quality: "Good",
       colour: "#39c904",
       image:good
     },
     {
       
-      param: { key: "PM 10", range: "55-154" },
+      param: { key: "PM10", range: "55-154" },
       quality: "Moderate",
       colour: "#e6e205",
       image:modrate
     },
     {
      
-      param: { key: "PM 10", range: "155-254" },
+      param: { key: "PM10", range: "155-254" },
       quality: "Poor",
       colour: "#ff7e00",
       image:poor
     },
     {
     
-      param: { key: "PM 10", range: "255-354" },
+      param: { key: "PM10", range: "255-354" },
       quality: "Unhealthy",
       colour: "#f5051d",
       image:unhealthy
     },
     {
      
-      param: { key: "PM 10", range: "355-424" },
-      quality: "Sever",
+      param: { key: "PM10", range: "355-424" },
+      quality: "Severe",
       colour: "#8f3f97",
       image:sever
     },
     {
 
-      param: { key: "PM 10", range: "> 425" },
+      param: { key: "PM10", range: "> 425" },
       quality: "Hazardous",
       colour: "#7e0023",
       image: hazard
@@ -56,13 +56,13 @@ function Pm10({colour=[],status=[],value=[]}) {
   const readings = [
     {
       colour: colour[0],
-      key: "PM10 Inside ",
+      key: "PM10 In ",
       value: value[0] + ' ug/m3',
       status: status[0],
     },
     {
       colour: colour[1],
-      key: "PM10 outside ",
+      key: "PM10 out ",
       value: value[1] + ' ug/m3',
       status: status[1],
     },
@@ -70,7 +70,7 @@ function Pm10({colour=[],status=[],value=[]}) {
   return (
     <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
     direction='horizontal'
-    gap={5}>
+    >
       <Reading parameters={readings} />
       <Scale heading="Particulate Matter (PM 10) is measured in microgram per cubic meter (ug/m3)" rangeArray={array} />
     </Stack>

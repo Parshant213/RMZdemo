@@ -23,7 +23,6 @@ function Scale({ heading, rangeArray }) {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-evenly",
               width: "100%",
               height: "5rem",
               border: "1px solid #ccc",
@@ -32,7 +31,8 @@ function Scale({ heading, rangeArray }) {
               marginTop:'1.3rem',
             }}
           >
-            <div style={{height:'2rem' ,width:'9rem'}}>
+            <div style={{height:'2rem' ,width:'11.5rem',display: "flex",
+              justifyContent: "center",}}>
                 {item?.param?.key} {item?.param?.range}
             </div>
             <img
@@ -44,7 +44,8 @@ function Scale({ heading, rangeArray }) {
                 
               }}
             />
-            <div style={{height:'2rem' ,width:'9rem'}}>{item?.quality}</div>
+            <div style={{height:'2rem' ,width:'9rem' , display: "flex",
+              justifyContent: "center",}}>{item?.quality}</div>
           </div>
         );
       })}

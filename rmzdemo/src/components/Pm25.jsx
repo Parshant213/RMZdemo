@@ -11,38 +11,38 @@ import hazard from "../assets/images/hazard.webp";
 function Pm25({ colour = [], status = [], value = [] }) {
   const array = [
     {
-      param: { key:"PM" ,range: "0-12" },
+      param: { key:"PM2.5" ,range: "0-12" },
       quality: "Good",
       colour: "#39c904",
       image:good
   
     },
     {
-      param: { key:"PM" , range: "13-35" },
+      param: { key:"PM2.5" , range: "13-35" },
       quality: "Moderate",
       colour: "#e6e205",
       image:modrate
     },
     {
-      param: {  key:"PM" ,range: "36-55" },
+      param: {  key:"PM2.5" ,range: "36-55" },
       quality: "Poor",
       colour: "#ff7e00",
       image:poor
     },
     {
-      param: { key:"PM" , range: "56-150" },
+      param: { key:"PM2.5" , range: "56-150" },
       quality: "Unhealthy",
       colour: "#f5051d",
       image:unhealthy
     },
     {
-      param: { key:"PM" , range: "151-250" },
+      param: { key:"PM2.5" , range: "151-250" },
       quality: "Sever",
       colour: "#8f3f97",
       image:sever
     },
     {
-      param: { key:"PM" , range: "> 251" },
+      param: { key:"PM2.5" , range: "> 251" },
       quality: "Hazardous",
       colour: "#7e0023",
       image:hazard
@@ -51,13 +51,13 @@ function Pm25({ colour = [], status = [], value = [] }) {
   const readings = [
     {
       colour: colour[0],
-      key: "PM2.5 Inside ",
+      key: "PM2.5 In ",
       value: value[0] + " ug/m3",
       status: status[0],
     },
     {
       colour: colour[1],
-      key: "PM2.5 Outside ",
+      key: "PM2.5 Out ",
       value: value[1] + " ug/m3",
       status: status[1],
     },
@@ -66,7 +66,6 @@ function Pm25({ colour = [], status = [], value = [] }) {
     <Stack
       className="col-md-7 mb-5 mx-auto col-9 mt-13" 
       direction='horizontal'
-      gap={5}
     >
       <Reading parameters={readings} />
       <Scale

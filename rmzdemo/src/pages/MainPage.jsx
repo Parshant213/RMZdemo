@@ -136,7 +136,7 @@ function MainPage() {
       } else if (56 <= indoor_pm25 && indoor_pm25 <= 150) {
         setPm25ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (151 <= indoor_pm25 && indoor_pm25 <= 250) {
-        setPm25ColorAndQuality(["#8f3f97","Sever"]);
+        setPm25ColorAndQuality(["#8f3f97","Severe"]);
       } else if (outdoor_pm25 > 250) {
         setPm25ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -150,7 +150,7 @@ function MainPage() {
       } else if (56 <= outdoor_pm25 && outdoor_pm25 <= 150) {
         setOutPm25ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (151 <= outdoor_pm25 && outdoor_pm25 <= 250) {
-        setOutPm25ColorAndQuality(["#8f3f97","Sever"]);
+        setOutPm25ColorAndQuality(["#8f3f97","Severe"]);
       } else if (outdoor_pm25 > 250) {
         setOutPm25ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -164,7 +164,7 @@ function MainPage() {
       } else if (255 <= indoor_pm10 && indoor_pm10 <= 354) {
         setPm10ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (355 <= indoor_pm10 && indoor_pm10 <= 424) {
-        setPm10ColorAndQuality(["#8f3f97","Sever"]);
+        setPm10ColorAndQuality(["#8f3f97","Severe"]);
       } else if (indoor_pm10 > 425) {
         setPm10ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -178,7 +178,7 @@ function MainPage() {
       } else if (255 <= outdoor_pm10 && outdoor_pm10 <= 354) {
         setOutPm10ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (355 <= outdoor_pm10 && outdoor_pm10 <= 424) {
-        setOutPm10ColorAndQuality(["#8f3f97","Sever"]);
+        setOutPm10ColorAndQuality(["#8f3f97","Severe"]);
       } else if (outdoor_pm10 > 425) {
         setOutPm10ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -192,7 +192,7 @@ function MainPage() {
       } else if (901 <= indoor_co2 && indoor_co2 <= 1500) {
         setCo2ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (1510 <= indoor_co2 && indoor_co2 <= 2500) {
-        setCo2ColorAndQuality(["#8f3f97","Sever"]);
+        setCo2ColorAndQuality(["#8f3f97","Severe"]);
       } else if (indoor_co2 > 2500) {
         setCo2ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -206,7 +206,7 @@ function MainPage() {
       } else if (901 <= outdoor_co2 && outdoor_co2 <= 1500) {
         setOutCo2ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (1510 <= outdoor_co2 && outdoor_co2 <= 2500) {
-        setOutCo2ColorAndQuality(["#8f3f97","Sever"]);
+        setOutCo2ColorAndQuality(["#8f3f97","Severe"]);
       } else if (outdoor_co2 > 2500) {
         setOutCo2ColorAndQuality(["#7e0023","Hazardous"]);
       }
@@ -262,7 +262,7 @@ function MainPage() {
         setAqiColorAndQuality(["#f5051d","Unhealthy"])
       }
       else if(indoor_aqi >=201 && indoor_aqi<=300){
-        setAqiColorAndQuality(["#8f3f97","Sever"])
+        setAqiColorAndQuality(["#8f3f97","Severe"])
       }
       else if(indoor_aqi >=301){
         setAqiColorAndQuality(["#7e0023","Hazardous"])

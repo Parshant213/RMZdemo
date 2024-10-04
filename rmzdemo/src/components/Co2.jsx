@@ -40,7 +40,7 @@ function Co2({colour=[],status=[],value=[]}) {
     {
       param: { key: "Co2", range: "1500-2500" },
     
-      quality: "Sever",
+      quality: "Severe",
       colour: "#8f3f97",
       image:sever
     },
@@ -70,7 +70,7 @@ function Co2({colour=[],status=[],value=[]}) {
   return (
     <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
     direction='horizontal'
-    gap={5}>
+    >
       <Reading parameters={readings} />
       <Scale
         heading="CO₂ is measured in PPM"
