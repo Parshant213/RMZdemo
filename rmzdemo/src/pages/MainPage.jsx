@@ -351,7 +351,7 @@ function MainPage() {
         <Card style={{ border: "none"}}>
           <Card.Body className="pr-0 pt-5">
             <Card.Title style={{fontWeight:'bold'}}>{propertyName}</Card.Title>
-            <Card.Subtitle>{spaceName}</Card.Subtitle>
+            <Card.Subtitle>{spaceName.replace('lobby','')}</Card.Subtitle>
             <Card.Text>
               Time: {moment.tz("Asia/Kolkata").format("LT")}
               <br />

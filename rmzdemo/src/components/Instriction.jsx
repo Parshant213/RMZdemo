@@ -47,7 +47,7 @@ function Instruction() {
            marginRight:'1rem'
         }}/>
         <div style={{display:'flex', alignItems:
-          "center" , fontWeight:'bold'
+          "center" , fontWeight:'bold',fontSize:'1.2rem'
         }} key={item.info}>{item.info}</div>
         </div> 
     })}

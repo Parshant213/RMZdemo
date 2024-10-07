@@ -13,13 +13,13 @@ function Reading({ parameters }) {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignContent: "center"
       }}
     >
     {parameters.map((item)=>{
-     
-        return  <div style={{}}>
+        return  <div >
         <CircularProgressbarWithChildren
           value={percentage}
           styles={buildStyles({

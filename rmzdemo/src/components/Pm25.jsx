@@ -37,7 +37,7 @@ function Pm25({ colour = [], status = [], value = [] }) {
     },
     {
       param: { key:"PM2.5" , range: "151-250" },
-      quality: "Sever",
+      quality: "Severe",
       colour: "#8f3f97",
       image:sever
     },
@@ -64,12 +64,12 @@ function Pm25({ colour = [], status = [], value = [] }) {
   ];
   return (
     <Stack
-      className="col-md-7 mb-5 mx-auto col-9 mt-13" 
-      direction='horizontal'
+      className="col-md-7 mb-5 mx-auto col-9 mt-12" 
+      gap={3}
     >
       <Reading parameters={readings} />
       <Scale
-        heading="Particulate Matter (Pm 2.5) is measured in microgram per cubic meter (ug/m3)"
+        heading="Particulate Matter (PM 2.5) is measured in microgram per cubic meter (ug/m3)"
         rangeArray={array}
       />
     </Stack>

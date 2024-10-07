@@ -3,7 +3,7 @@ import { Stack } from "react-bootstrap";
 
 function Scale({ heading, rangeArray }) {
   return (
-    <Stack gap={1} 
+    <Stack gap={0.5} 
     >
       <div
         style={{
@@ -14,7 +14,7 @@ function Scale({ heading, rangeArray }) {
           alignItems: "center",
         }}
       >
-        {heading}
+      <div style={{textAlign:"center"}}>{heading}</div>
       </div>
       {rangeArray.map((item) => {
         const colour = item?.colour;
@@ -23,6 +23,7 @@ function Scale({ heading, rangeArray }) {
             style={{
               display: "flex",
               alignItems: "center",
+              justifyContent:"center",
               width: "100%",
               height: "5rem",
               border: "1px solid #ccc",

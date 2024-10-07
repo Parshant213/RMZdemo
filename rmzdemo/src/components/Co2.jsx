@@ -11,7 +11,7 @@ import hazard from "../assets/images/hazard.webp";
 function Co2({colour=[],status=[],value=[]}) {
   const array = [
     {
-      param: { key: "Co2", range: "< 750" },
+      param: { key: "CO₂", range: "< 750" },
       
       quality: "Good",
       colour: "#39c904",
@@ -24,28 +24,28 @@ function Co2({colour=[],status=[],value=[]}) {
       image: modrate,
     },
     {
-      param: { key: "Co2", range: "841-900" },
+      param: { key: "CO₂", range: "841-900" },
     
       quality: "Poor",
       colour: "#ff7e00",
       image:poor
     },
     {
-      param: { key: "Co2", range: "901-1500" },
+      param: { key: "CO₂", range: "901-1500" },
       
       quality: "Unhealthy",
       colour: "#f5051d",
       image:unhealthy
     },
     {
-      param: { key: "Co2", range: "1500-2500" },
+      param: { key: "CO₂", range: "1500-2500" },
     
       quality: "Severe",
       colour: "#8f3f97",
       image:sever
     },
     {
-      param: { key: "Co2", range: "> 2500" },
+      param: { key: "CO₂", range: "> 2500" },
 
       quality: "Hazardous",
       colour: "#7e0023",
@@ -57,23 +57,22 @@ function Co2({colour=[],status=[],value=[]}) {
     {
       colour: colour[0],
       key: "CO₂ Inside",
-      value: value[0] + 'PPM',
+      value: value[0] + ' PPM',
       status: status[0],
     },
     {
         colour: colour[1],
         key: "CO₂ Outside",
-        value: value[1] + 'PPM',
+        value: value[1] + ' PPM',
         status: status[1],
       },
   ];
   return (
-    <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
-    direction='horizontal'
+    <Stack className="col-md-7 mb-5 mx-auto col-9 mt-12"  gap={3}
     >
       <Reading parameters={readings} />
       <Scale
-        heading="CO₂ is measured in PPM"
+        heading="Carbon Dioxide (CO₂) is measured in PPM"
         rangeArray={array}
       />
     </Stack>

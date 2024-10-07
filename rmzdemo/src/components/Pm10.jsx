@@ -62,17 +62,17 @@ function Pm10({colour=[],status=[],value=[]}) {
     },
     {
       colour: colour[1],
-      key: "PM10 out ",
+      key: "PM10 Out ",
       value: value[1] + ' ug/m3',
       status: status[1],
     },
   ];
   return (
-    <Stack className="col-md-7 mb-5 mx-auto col-9 mt-13" 
-    direction='horizontal'
+    <Stack className="col-md-7 mb-5 mx-auto col-9 mt-12 "  gap={3}
     >
       <Reading parameters={readings} />
       <Scale heading="Particulate Matter (PM 10) is measured in microgram per cubic meter (ug/m3)" rangeArray={array} />
+      
     </Stack>
   );
 }
