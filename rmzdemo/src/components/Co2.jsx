@@ -18,7 +18,7 @@ function Co2({colour=[],status=[],value=[]}) {
       image:good
     },
     {
-      param: { key: "Co2", range: "751-840" },
+      param: { key: "CO₂", range: "751-840" },
       quality: "Moderate",
       colour: "#e6e205",
       image: modrate,

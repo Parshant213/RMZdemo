@@ -14,6 +14,9 @@ import Voc from "../components/Voc";
 
 function MainPage() {
   let data = useLoaderData();
+  if(data?.space_id === 'a1c2f4e9-2002-4259-971c-9e49badf89e8'){
+    data.space_name = 'T30 Ground Floor';
+  }
   let entries = Object.entries(data);
   let [logo, setLogo] = useState(
     "https://rmz-images.s3.ap-south-1.amazonaws.com/logo/RMZ_Corp_Logo.png"
@@ -76,9 +79,10 @@ function MainPage() {
     } else if (customerName == "rmz-pune") {
       setPropertyName("RMZ Westend Pune");
     } else if (customerName == "rmz-hyd") {
-      setPropertyName("RMZ Hydrabad");
+      setPropertyName("RMZ Hyderabad");
     }
-
+    else if(customerName == "rmz-nexity-hyd"){
+         setPropertyName("RMZ Nexity Hyderabad");}
     try {
       const requestOptions = {
         headers: {
@@ -345,7 +349,7 @@ function MainPage() {
           <Card.Img
             variant="top"
             src={logo}
-            style={{ height: "10rem", width: "9rem" }}
+            style={{ height: "15rem", width: "15rem" }}
           />
         </Card>
         <Card style={{ border: "none"}}>
@@ -359,7 +363,7 @@ function MainPage() {
             </Card.Text>
           </Card.Body>
         </Card>
-      </div>
+        </div>
         <Carousel>
             <Carousel.Item>
                 <Instruction/>
@@ -386,7 +390,7 @@ function MainPage() {
                 <Aqi colour={[aqiColor[0]]} status={[aqiColor[1]]} value={[aqi]}/>
             </Carousel.Item>
         </Carousel>
-      
+        
     </div>
   );
 }

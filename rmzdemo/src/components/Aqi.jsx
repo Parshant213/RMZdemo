@@ -52,8 +52,7 @@ const readings = [{
     colour:colour,key:'AIR QUALITY INDEX',value:value,status:status
 }]
     return(
-     <Stack className="col-md-7 mb-5 mx-auto col-9 mt-12.5"  gap={3}
-     >
+     <Stack className="col-md-7 mb-5 mx-auto col-9 mt-12.5"  gap={3}>
        <Reading parameters={readings}/>
        <Scale heading='AIR QUALITY INDEX (AQI)' rangeArray={array} />
        

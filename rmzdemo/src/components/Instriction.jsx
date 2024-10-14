@@ -37,7 +37,7 @@ const parameters = [
   },
 ];
 function Instruction() {
-  return <Stack gap={5} className='col-md-5 mb-5 mx-auto col-9 mt-13'>
+  return <Stack gap={5} className='col-md-5 mb-5 mx-auto col-9 mt-12'>
      {parameters.map((item)=>{
         return<div style={{display:'flex'}}>
         <img src={item.image} style={{
