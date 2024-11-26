@@ -14,7 +14,7 @@ function Scale({ heading, rangeArray }) {
           alignItems: "center",
         }}
       >
-      {/* <div style={{textAlign:"center"}}>{heading}</div> */}
+      <div style={{textAlign:"center"}}>{heading}</div>
       </div>
       {rangeArray.map((item) => {
         const colour = item?.colour;
@@ -26,7 +26,7 @@ function Scale({ heading, rangeArray }) {
               justifyContent:"center",
               width: "100%",
               height: "5rem",
-              color:"white",
+              border: "1px solid #ccc",
               backgroundColor:colour,
               borderRadius: "1.5rem",
               marginTop:'1.3rem',

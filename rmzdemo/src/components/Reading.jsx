@@ -15,8 +15,6 @@ function Reading({ parameters }) {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-evenly",
-        alignContent: "center",
-        color:"white",
       }}
     >
     {parameters.map((item)=>{
@@ -29,9 +27,9 @@ function Reading({ parameters }) {
             strokeLinecap: "round",
           })}
         >
-          <div style={{ marginTop: -5 ,backgroundColor:`${item.colour}`}}>{item.key}</div>
-          <div style={{ fontWeight: "bold" ,backgroundColor:`${item.colour}`}}>{item.value}</div>
-          {/* <div style={{   fontWeight:'bold' ,backgroundColor:`${item.colour}` }}>{item.status}</div> */}
+          <div style={{ marginTop: -5 }}>{item.key}</div>
+          <div style={{ fontWeight: "bold" }}>{item.value}</div>
+          <div style={{   fontWeight:'bold'  }}>{item.status}</div>
         </CircularProgressbarWithChildren>
       </div>
     })}
