@@ -33,7 +33,7 @@ function ReadingDemo({ parameters }) {
           <div style={{   fontWeight:'bold'  }}>{item.status}</div>
         
         </CircularProgressbarWithChildren>
-        <div  style={{ fontWeight: "bold" ,fontSize:"3rem" , color:"royalblue"}}>{item.key}</div>
+        <div  style={{ fontWeight: "bold" ,fontSize:"2rem" , color:"royalblue"}}>{item.key}</div>
       </div>
     })}
     </div>

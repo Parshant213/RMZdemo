@@ -341,7 +341,7 @@ const MaxTowers = () => {
   
   return (
    
-    <div className="container-fluid"> 
+    <div className="fluid-container"> 
 
   <div
     style={{
@@ -396,19 +396,30 @@ const MaxTowers = () => {
   </div>
 
   <div
+  style={{
+    height: "60vh", // Takes 60% of viewport height
+    width: "100vw", // Full viewport width
+    backgroundColor: "white", // Light gray background for contrast
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center", // Center the box vertically and horizontally
+  }}
+>
+  <div
     style={{
-      height: "40vh", // Takes 20% of viewport height
-      width: "100vw", // Full viewport width
+      height: "60vh", // Adjust the height of the box
+      width: "90vw", // Adjust the width of the box
       backgroundImage: `url(${demobuilding})`,
-      backgroundSize: "cover", // Ensures the image covers the div
+      backgroundSize: "cover", // Ensures the image covers the box
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      display: "flex",
-      justifyContent: "center",
+      border: "5px solid white", // White border for the box
+      borderRadius: "10px", // Optional: Rounded corners for the box
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Optional: Adds shadow for depth
     }}
-  >
-   
-  </div>
+  ></div>
+</div>
+
   <Carousel
     style={{
       position: "absolute", // Overlapping behavior
