@@ -11,29 +11,12 @@ function App() {
       path: "kiosk/rmz/:customerName/:building/:IndoorSensor/:OutdoorSensor",
       element: <RMZCircularDesign />,
       errorElement: <ErrorPage />,
-  //     loader:async ({request,params})=>{
-  //       const requestOptions = {
-  //       headers:{
-  //            Authorization:
-	//  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRjZTcwYjFiYjVhM2M1ZTBmMmEzNDc3IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20ifSwiaWF0IjoxNzMxODcyMDUzfQ.9t4vX_lC9aVD9wSpTsxBHxpCmGbe17h_5webTp7BvNM"}
-  //        };
-  //        const url = `http://3.7.82.174:4444/api/v1/customers/${params.customerId}`;
-  //        return fetch(url,requestOptions);
-  //     }
     },
     {
-      path:"kiosk/max/:customerId/:sensorName",
-      element:<MAX/>,    //IAQ04000026     // 6690ef7fdeb2b486e92011aa
+      path:"kiosk/max/:customerName/:sensorName",
+      element:<MAX/>, 
       errorElement: <ErrorPage />,
-  //      loader:async ({request,params})=>{
-  //       const requestOptions = {
-  //       headers:{
-  //            Authorization:
-	//  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRjZTcwYjFiYjVhM2M1ZTBmMmEzNDc3IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20ifSwiaWF0IjoxNzMxODcyMDUzfQ.9t4vX_lC9aVD9wSpTsxBHxpCmGbe17h_5webTp7BvNM"}
-  //        };
-  //        const url = `/api/v1/customers/${params.customerId}`;
-  //        return fetch(url,requestOptions);
-  //     }
+
     }
   ]);
 

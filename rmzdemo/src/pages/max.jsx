@@ -13,11 +13,7 @@ import axios from "axios";
 import Pm25demon from "../components/MaxTowers/Pm25demon";
 import Pm10demo from "../components/MaxTowers/Pm10demo";
 import "./style.css";
-const AQI_MIN_VALUE = 30;
-const AQI_MAX_VALUE = 70;
 
-const AQI_OUT_MIN_VALUE = 71;
-const AQI_OUT_MAX_VALUE = 120;
 
 const maxestates_sites_coordinates = {
   maxTower: {
@@ -27,18 +23,12 @@ const maxestates_sites_coordinates = {
 };
 const MAX = () => {
 
-  const sensorName = window.location.href.split("/")[8];
-  const deviceTypeId = window.location.href.split("/")[7];
-  
-  
+  const sensorName = window.location.href.split("/")[6];  
+  console.log(sensorName)
 
   const [pm25, setPm25] = useState("NA");
   const [pm10, setPm10] = useState("NA");
  
-  if (aqi > 2000) {
-    setAqi(67);
-  }
-
   const [pm25Color, setPm25ColorAndQuality] = useState([]);
   const [pm10Color, setPm10ColorAndQuality] = useState([]);
 
@@ -59,7 +49,7 @@ const MAX = () => {
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRjZTcwYjFiYjVhM2M1ZTBmMmEzNDc3IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20ifSwiaWF0IjoxNzMxODcyMDUzfQ.9t4vX_lC9aVD9wSpTsxBHxpCmGbe17h_5webTp7BvNM",
         },
       };
-      const url = `/api/v1/devices/sens-data?sensorName=${sensorName}&timeFrameInHours=1&deviceTypeId=6690ef7fdeb2b486e92011aa`;
+      const url = `http://3.7.82.174:4444/api/v1/devices/sens-data?sensorName=${sensorName}&timeFrameInHours=1&deviceTypeId=6690ef7fdeb2b486e92011aa`;
       const responseData = await fetch(url, requestOptions);
 
       let indoorData = await responseData.json() || [];
@@ -75,55 +65,20 @@ const MAX = () => {
           },
         },
       } = await axios.get(outdoorUrl);
-      // const data = await axios.get(outdoorUrl);
-      // console.log(data);
-
-      // console.log(entries);
-
-      // console.log(dataEnteries);
-
-      // get humidity and temp values from  api
-
-      //   const site_location = window.location.href.split("/")[5];
-      //   const { lat, long } = find_coordinates(site_location);
-      // const aqicn_values = await get_temp_hum_api_values(lat, long);
-      // console.log(`Lat : ${lat} ; Long : ${long}`);
-      // console.log(
-      //   `${bucketPrefix} : Temp : ${aqicn_values.temp} ; Hum : ${aqicn_values.hum}`,
-      // );
 
       const indoor_pm25 = indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || "NA";
       const outdoor_pm25 = pm25?.v || "NA";
 
       const indoor_pm10 = indoorData[0]["PM10"] || "NA";
       const outdoor_pm10 = pm10?.v || "NA";
-
-      const indoor_co2 = indoorData[0]["CO2"] || "NA";
-      const outdoor_co2 = 0;
-
-      const indoor_voc = 0;
-
-      const indoor_temp = 0;
-
-      const indoor_hum = 0;
-
-      const indoor_aqi = 0;
-      console.log("pm25,pm10,co2", indoor_pm25, indoor_pm10, indoor_co2);
-      setAqi(0);
+     
       setPm25(indoor_pm25);
       setPm10(indoor_pm10);
-      setCo2(indoor_co2);
-      setVoc(0);
-      setTemp(0);
-      setHum(0);
-
+    
       setOutPm25(outdoor_pm25);
       setOutPm10(outdoor_pm10);
-      setOutCo2("NA");
-      setOutVoc(0);
-      setOutTemp(0);
-      setOutHum(0);
-
+      
+     
       if (indoor_pm25 <= 12) {
         setPm25ColorAndQuality(["#39c904", "Good"]);
       } else if (13 <= indoor_pm25 && indoor_pm25 <= 35) {
@@ -179,124 +134,7 @@ const MAX = () => {
       } else if (outdoor_pm10 > 425) {
         setOutPm10ColorAndQuality(["#7e0023", "Hazardous"]);
       }
-
-      if (indoor_co2 <= 750) {
-        setCo2ColorAndQuality(["#39c904", "Good"]);
-      } else if (751 <= indoor_co2 && indoor_co2 <= 841) {
-        setCo2ColorAndQuality(["#e6e205", "Moderate"]);
-      } else if (842 <= indoor_co2 && indoor_co2 <= 900) {
-        setCo2ColorAndQuality(["#ff7e00", "Poor"]);
-      } else if (901 <= indoor_co2 && indoor_co2 <= 1500) {
-        setCo2ColorAndQuality(["#f5051d", "Unhealthy"]);
-      } else if (1510 <= indoor_co2 && indoor_co2 <= 2500) {
-        setCo2ColorAndQuality(["#8f3f97", "Severe"]);
-      } else if (indoor_co2 > 2500) {
-        setCo2ColorAndQuality(["#7e0023", "Hazardous"]);
-      }
-
-      if (outdoor_co2 <= 750) {
-        setOutCo2ColorAndQuality(["#39c904", "Good"]);
-      } else if (751 <= outdoor_co2 && outdoor_co2 <= 841) {
-        setOutCo2ColorAndQuality(["#e6e205", "Moderate"]);
-      } else if (842 <= outdoor_co2 && outdoor_co2 <= 900) {
-        setOutCo2ColorAndQuality(["#ff7e00", "Poor"]);
-      } else if (901 <= outdoor_co2 && outdoor_co2 <= 1500) {
-        setOutCo2ColorAndQuality(["#f5051d", "Unhealthy"]);
-      } else if (1510 <= outdoor_co2 && outdoor_co2 <= 2500) {
-        setOutCo2ColorAndQuality(["#8f3f97", "Severe"]);
-      } else if (outdoor_co2 > 2500) {
-        setOutCo2ColorAndQuality(["#7e0023", "Hazardous"]);
-      }
-
-      if (indoor_voc <= 40) {
-        setVocColorAndQuality(["#39c904", "Good"]);
-      } else if (indoor_voc >= 41 && indoor_voc <= 100) {
-        setVocColorAndQuality(["#e6e205", "Moderate"]);
-      } else if (indoor_voc >= 101 && indoor_voc <= 300) {
-        setVocColorAndQuality(["#ff7e00", "Poor"]);
-      } else {
-        setVocColorAndQuality(["#f5051d", "Unhealthy"]);
-      }
-
-      if (indoor_temp <= 10) {
-        setTempColorAndQuality(["#008eff", "Too Cold"]);
-      } else if (indoor_temp >= 11 && indoor_temp <= 20) {
-        setTempColorAndQuality(["#09e9ff", "Cold"]);
-      } else if (indoor_temp >= 21 && indoor_temp <= 25) {
-        setTempColorAndQuality(["#39c904", "Optimal"]);
-      } else if (indoor_temp > 25 && indoor_temp <= 30) {
-        setTempColorAndQuality(["#f4b436", "Hot"]);
-      } else if (indoor_temp > 30) {
-        setTempColorAndQuality(["#f44336", "Too Hot"]);
-      }
-
-      if (indoor_hum < 20) {
-        setHumColorAndQuality(["#f98224", "Too Dry"]);
-      } else if (indoor_hum >= 21 && indoor_hum <= 40) {
-        setHumColorAndQuality(["#a4dbef", "Dry"]);
-      } else if (indoor_hum > 40 && indoor_hum <= 60) {
-        setHumColorAndQuality(["#00ff9a", "Optimal"]);
-      } else if (indoor_hum > 60 && indoor_hum <= 100) {
-        setHumColorAndQuality(["#008eff", "Too Humid"]);
-      }
-
-      if (indoor_aqi <= 50) {
-        setAqiColorAndQuality(["#39c904", "Good"]);
-      } else if (indoor_aqi >= 51 && indoor_aqi <= 100) {
-        setAqiColorAndQuality(["#e6e205", "Moderate"]);
-      } else if (indoor_aqi >= 101 && indoor_aqi <= 150) {
-        setAqiColorAndQuality(["#ff7e00", "Poor"]);
-      } else if (indoor_aqi >= 151 && indoor_aqi <= 200) {
-        setAqiColorAndQuality(["#f5051d", "Unhealthy"]);
-      } else if (indoor_aqi >= 201 && indoor_aqi <= 300) {
-        setAqiColorAndQuality(["#8f3f97", "Severe"]);
-      } else if (indoor_aqi >= 301) {
-        setAqiColorAndQuality(["#7e0023", "Hazardous"]);
-      }
-      let outdoor_temp = parseInt();
-      // aqicn_values.temp == "NA" ? "NA" : parseInt(aqicn_values.temp);
-      let outdoor_hum = parseInt();
-      // aqicn_values.hum == "NA" ? "NA" : parseInt(aqicn_values.hum);
-
-      // setting the state of outdoor temp
-
-      if (outdoor_temp == "NA") setOutTemp("NA");
-      else setOutTemp(parseInt(outdoor_temp));
-
-      // setting the state of outdoor hum
-
-      if (outdoor_hum == "NA") setOutHum("NA");
-      else setOutHum(parseInt(outdoor_hum));
-
-      // color coding for outdoor temp
-
-      if (outdoor_temp <= 10) {
-        setOutTempColorAndQuality(["#008eff", "Too Cold"]);
-      } else if (outdoor_temp >= 11 && outdoor_temp <= 20) {
-        setOutTempColorAndQuality(["#09e9ff", "Cold"]);
-      } else if (outdoor_temp >= 21 && outdoor_temp <= 25) {
-        setOutTempColorAndQuality(["#39c904", "Optimal"]);
-      } else if (outdoor_temp > 25 && outdoor_temp <= 30) {
-        setOutTempColorAndQuality(["#f4b436", "Hot"]);
-      } else if (outdoor_temp > 30) {
-        setOutTempColorAndQuality(["#f44336", "Too Hot"]);
-      }
-
-      // color coding for outdoor hum
-
-      if (outdoor_hum == "NA") setOutHumColorAndQuality("bg-na");
-
-      if (outdoor_hum < 20) {
-        setOutHumColorAndQuality(["#f98224", "Too Dry"]);
-      } else if (outdoor_hum >= 21 && outdoor_hum <= 40) {
-        setOutHumColorAndQuality(["#a4dbef", "Dry"]);
-      } else if (outdoor_hum > 40 && outdoor_hum <= 60) {
-        setOutHumColorAndQuality(["#00ff9a", "Optimal"]);
-      } else if (outdoor_hum > 60 && outdoor_hum <= 100) {
-        setOutHumColorAndQuality(["#008eff", "Too Humid"]);
-      }
-
-      // setColors();
+   
     } catch (error) {
       console.log(error);
     }
@@ -312,7 +150,7 @@ const MAX = () => {
      return () => clearInterval(interval);
   }, []);
 
-  const stateVariable = "bg-unhealthy";
+
   
   return (
    
