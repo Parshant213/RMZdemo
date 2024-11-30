@@ -84,7 +84,7 @@ const MaxTowers = () => {
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRjZTcwYjFiYjVhM2M1ZTBmMmEzNDc3IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20ifSwiaWF0IjoxNzMxODcyMDUzfQ.9t4vX_lC9aVD9wSpTsxBHxpCmGbe17h_5webTp7BvNM",
         },
       };
-      const url = `http://3.7.82.174:4444/api/v1/devices/sens-data?sensorName=${sensorName}&timeFrameInHours=1&deviceTypeId=6690ef7fdeb2b486e92011aa`;
+      const url = `api/v1/devices/sens-data?sensorName=${sensorName}&timeFrameInHours=1&deviceTypeId=6690ef7fdeb2b486e92011aa`;
       const responseData = await fetch(url, requestOptions);
 
       let indoorData = await responseData.json() || [];
@@ -117,7 +117,7 @@ const MaxTowers = () => {
       //   `${bucketPrefix} : Temp : ${aqicn_values.temp} ; Hum : ${aqicn_values.hum}`,
       // );
 
-      const indoor_pm25 = indoorData[0]["PM25"] || "NA";
+      const indoor_pm25 = indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || "NA";
       const outdoor_pm25 = pm25?.v || "NA";
 
       const indoor_pm10 = indoorData[0]["PM10"] || "NA";
@@ -388,6 +388,7 @@ const MaxTowers = () => {
           style={{
             color: "orange",
             fontWeight: "bold",
+            margin:"2rem"
           }}
         >
           <div>AIR QUALITY MEASURED TODAY</div>
@@ -407,7 +408,7 @@ const MaxTowers = () => {
 >
   <div
     style={{
-      height: "60vh", // Adjust the height of the box
+      height: "50vh", // Adjust the height of the box
       width: "90vw", // Adjust the width of the box
       backgroundImage: `url(${demobuilding})`,
       backgroundSize: "cover", // Ensures the image covers the box
@@ -428,7 +429,7 @@ const MaxTowers = () => {
       left: "0",
       width: "100%", // Full width
       zIndex: "10", // Ensure it overlaps above other elements
-      marginTop:"18rem",
+      marginTop:"25rem",
       fontFamily: "monospace"
     }}
   >
