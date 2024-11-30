@@ -341,11 +341,11 @@ const MaxTowers = () => {
   
   return (
    
-    <div className="fluid-container"> 
+    <> 
 
   <div
     style={{
-      height: "60vh",
+      height: "50vh",
       backgroundColor: "white",
      fontFamily: "monospace",
       justifyContent: "center",
@@ -416,6 +416,7 @@ const MaxTowers = () => {
       border: "5px solid white", // White border for the box
       borderRadius: "10px", // Optional: Rounded corners for the box
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Optional: Adds shadow for depth
+      margintop:"2rem"
     }}
   ></div>
 </div>
@@ -455,7 +456,7 @@ const MaxTowers = () => {
       <Pm10demo colour={[pm10Color[0],outpm10Color[0]]} status={[pm10Color[1],outpm10Color[1]]} value={[pm10,outpm10]}/>
     </Carousel.Item>
   </Carousel>
-</div>
+</>
 
         
     // </div>
