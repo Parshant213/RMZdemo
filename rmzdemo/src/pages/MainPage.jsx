@@ -141,7 +141,7 @@ function MainPage() {
         setPm25ColorAndQuality(["#f5051d","Unhealthy"]);
       } else if (151 <= indoor_pm25 && indoor_pm25 <= 250) {
         setPm25ColorAndQuality(["#8f3f97","Severe"]);
-      } else if (outdoor_pm25 > 250) {
+      } else if (indoor_pm25 > 250) {
         setPm25ColorAndQuality(["#7e0023","Hazardous"]);
       }
 
