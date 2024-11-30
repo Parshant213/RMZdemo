@@ -25,56 +25,31 @@ const maxestates_sites_coordinates = {
     long: 77.3577104,
   },
 };
-const MaxTowers = () => {
-  const maxEstate =
-    "https://clairco-customerlogo.s3.ap-south-1.amazonaws.com/demo.png";
-  const building_Image =
-    "https://clairco-customerlogo.s3.ap-south-1.amazonaws.com/demobuilding.jpg";
+const MAX = () => {
+
   const sensorName = window.location.href.split("/")[8];
   const deviceTypeId = window.location.href.split("/")[7];
-  let [logo, setLogo] = useState(maxEstate);
-  // let data = useLoaderData();
-
-  // data = data.filter((deviceData) => {
-  //   if (deviceData?.name == sensorName) {
-  //     return deviceData;
-  //   }
-  // });
+  
+  
 
   const [pm25, setPm25] = useState("NA");
   const [pm10, setPm10] = useState("NA");
-  const [co2, setCo2] = useState("");
-  const [voc, setVoc] = useState(0);
-  const [temp, setTemp] = useState(0);
-  const [hum, setHum] = useState(0);
-  const [aqi, setAqi] = useState(0);
+ 
   if (aqi > 2000) {
     setAqi(67);
   }
 
   const [pm25Color, setPm25ColorAndQuality] = useState([]);
   const [pm10Color, setPm10ColorAndQuality] = useState([]);
-  const [co2Color, setCo2ColorAndQuality] = useState([]);
-  const [vocColor, setVocColorAndQuality] = useState([]);
-  const [tempColor, setTempColorAndQuality] = useState([]);
-  const [humColor, setHumColorAndQuality] = useState([]);
-  const [aqiColor, setAqiColorAndQuality] = useState([]);
+
 
   const [outpm25, setOutPm25] = useState("NA");
   const [outpm10, setOutPm10] = useState("NA");
-  const [outco2, setOutCo2] = useState();
-  const [outvoc, setOutVoc] = useState(0);
-  // const [outtemp, setOutTemp] = useState(parseInt(dataEnteriesOut[4][1]));
-  // const [outhum, setOutHum] = useState(dataEnteriesOut[5][1]);
-  const [outtemp, setOutTemp] = useState(0);
-  const [outhum, setOutHum] = useState(0);
+
 
   const [outpm25Color, setOutPm25ColorAndQuality] = useState([]);
   const [outpm10Color, setOutPm10ColorAndQuality] = useState([]);
-  const [outco2Color, setOutCo2ColorAndQuality] = useState([]);
-  const [outtempColor, setOutTempColorAndQuality] = useState([]);
-  const [outhumColor, setOutHumColorAndQuality] = useState([]);
-  // const [propertyName, setPropertyName] = useState("");
+ 
 
   const fetchData = async () => {
     try {
@@ -464,5 +439,5 @@ const MaxTowers = () => {
   );
 };
 
-export default MaxTowers;
+export default MAX;
 

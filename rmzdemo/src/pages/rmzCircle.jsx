@@ -11,31 +11,24 @@ import "./style.css";
 import Pm10 from "../components/Pm10";
 import Hum from "../components/Hum";
 import Voc from "../components/Voc";
+import RMZ_Corp_Logo from '../assets/images/demo/RMZ_Corp_Logo.png';
+import { getIndoorData,getOutdoorData } from "../utils/apicalls";
 
-function MainPage() {
-  let data = useLoaderData();
-  if(data?.space_id === 'a1c2f4e9-2002-4259-971c-9e49badf89e8'){
-    data.space_name = 'T30 Ground Floor';
-  }
-  let entries = Object.entries(data);
-  let [logo, setLogo] = useState(
-    "https://rmz-images.s3.ap-south-1.amazonaws.com/logo/RMZ_Corp_Logo.png"
-  );
-  const customerName = window.location.href.split("/")[4];
-  let dataEnteries = Object.entries(entries[0][1].inside);
-
-  let dataEnteriesOut = Object.entries(entries[0][1].outside);
-  const [seconds, setSeconds] = useState(0);
-  const [count, setCount] = useState(0);
-  const [spaceId, setSpaceId] = useState(entries[1][1]);
-  const [spaceName, setspaceName] = useState(entries[2][1]);
-  const [pm25, setPm25] = useState(dataEnteries[1][1]);
-  const [pm10, setPm10] = useState(dataEnteries[2][1]);
-  const [co2, setCo2] = useState(dataEnteries[3][1]);
-  const [voc, setVoc] = useState(dataEnteries[4][1]);
-  const [temp, setTemp] = useState(parseInt(dataEnteries[5][1]));
-  const [hum, setHum] = useState(dataEnteries[6][1]);
-  const [aqi, setAqi] = useState(dataEnteries[7][1]);
+function RMZCircularDesign() {
+ 
+ const [logo, setLogo] = useState(RMZ_Corp_Logo);
+ const data = window.location.href.split("/");
+ const customerName = data[5];
+  const [spaceName, setspaceName] = useState(data[6]);
+  const sensorName = data[7];
+  const [outdoorDeviceId , setOutdoorDeviceId] = useState(data[8]);
+  const [pm25, setPm25] = useState();
+  const [pm10, setPm10] = useState();
+  const [co2, setCo2] = useState();
+  const [voc, setVoc] = useState();
+  const [temp, setTemp] = useState();
+  const [hum, setHum] = useState();
+  const [aqi, setAqi] = useState();
   if (aqi > 2000) {
     setAqi(67);
   }
@@ -48,14 +41,12 @@ function MainPage() {
   const [humColor, setHumColorAndQuality] = useState([]);
   const [aqiColor, setAqiColorAndQuality] = useState([]);
 
-  const [outpm25, setOutPm25] = useState(dataEnteriesOut[1][1]);
-  const [outpm10, setOutPm10] = useState(dataEnteriesOut[2][1]);
-  const [outco2, setOutCo2] = useState(dataEnteriesOut[3][1]);
-  const [outvoc, setOutVoc] = useState(0);
-  // const [outtemp, setOutTemp] = useState(parseInt(dataEnteriesOut[4][1]));
-  // const [outhum, setOutHum] = useState(dataEnteriesOut[5][1]);
-  const [outtemp, setOutTemp] = useState(0);
-  const [outhum, setOutHum] = useState(0);
+  const [outpm25, setOutPm25] = useState();
+  const [outpm10, setOutPm10] = useState();
+  const [outco2, setOutCo2] = useState();
+  const [outvoc, setOutVoc] = useState('NA');
+  const [outtemp, setOutTemp] = useState('NA');
+  const [outhum, setOutHum] = useState('NA');
 
 
   const [outpm25Color, setOutPm25ColorAndQuality] = useState([]);
@@ -68,68 +59,62 @@ function MainPage() {
   const fetchData = async () => {
     if (customerName == "rmz-milenia") {
       setPropertyName("The Millenia");
+      setOutdoorDeviceId('AAQ05000004');
     } else if (customerName == "rmz-prestige") {
       setPropertyName("Prestige RMZ Startech");
+      setOutdoorDeviceId('AAQ05000003');
     } else if (customerName == "rmz-infinity-bgrl") {
       setPropertyName("RMZ Infinity");
+      setOutdoorDeviceId('AAQ05000005');
     } else if (customerName == "rmz-gurgaon") {
       setPropertyName("RMZ Infinity");
+      setOutdoorDeviceId('AAQ05000008');
     } else if (customerName == "rmz-one") {
       setPropertyName("RMZ OPM");
+      setOutdoorDeviceId('AAQ05000004');
     } else if (customerName == "rmz-pune") {
       setPropertyName("RMZ Westend Pune");
+      setOutdoorDeviceId('AAQ05000007');
     } else if (customerName == "rmz-hyd") {
       setPropertyName("RMZ Hyderabad");
+      setOutdoorDeviceId('AAQ05000004');
     }
     else if(customerName == "rmz-nexity-hyd"){
-         setPropertyName("RMZ Nexity Hyderabad");}
+         setPropertyName("RMZ Nexity Hyderabad");
+         setOutdoorDeviceId('AAQ05000012');
+        }
     try {
-      const requestOptions = {
-        headers: {
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOTMwYWY4LWViMmMtNDQ0YS04ZmM5LWJiZjVmYWViNjUzMSIsImlhdCI6MTgwMzM4ODQ3N30.7CcBQO8wj8Xax8cKhUVOVikS-EUKrhZGnz_-1pGFSGs",
-        },
-      };
-      const responseData = await fetch(
-        `https://api.getclairco.com/v1/customer/space_data?space_id=${spaceId}`,
-        requestOptions
-      );
-      const data = await responseData.json();
-      let entries = Object.entries(data);
-      let dataEnteries = Object.entries(entries[0][1].inside);
-      let dataEnteriesOut = Object.entries(entries[0][1].outside);
+          
+      let indoorData = await getIndoorData(sensorName) || [];
+      if(indoorData || indoorData?.length !== 0){
+          indoorData?.sort((a, b) => b.timestamp - a.timestamp);
+        }
+      console.log('indoor',indoorData);
+      
+    
+      const indoor_pm25 = indoorData[0]['PM25'] || indoorData[0]['PM2_5'] || 'NA';
+      
 
-      const indoor_pm25 = parseInt(dataEnteries[1][1]);
-      const outdoor_pm25 = parseInt(dataEnteriesOut[1][1]);
+      const indoor_pm10 = indoorData[0]['PM10'] || 'NA';
+     
+      const indoor_co2 = indoorData[0]['CO2'] || 'NA';
+      
 
-      const indoor_pm10 = parseInt(dataEnteries[2][1]);
-      const outdoor_pm10 = parseInt(dataEnteriesOut[2][1]);
+      const indoor_voc = indoorData[0]['VOC'] || 'NA';
 
-      const indoor_co2 = parseInt(dataEnteries[3][1]);
-      const outdoor_co2 = parseInt(dataEnteriesOut[3][1]);
+      const indoor_temp = indoorData[0]['TEMP'] || 'NA';
 
-      const indoor_voc = parseInt(dataEnteries[4][1]);
+      const indoor_hum = indoorData[0]['HUM'] || 'NA';
 
-      const indoor_temp = parseInt(dataEnteries[5][1]);
+      const indoor_aqi = indoorData[0]['AQI'] || 'NA';
 
-      const indoor_hum = parseInt(dataEnteries[6][1]);
-
-      const indoor_aqi = parseInt(dataEnteries[7][1]);
-
-      setPm25(parseInt(dataEnteries[1][1]));
-      setPm10(parseInt(dataEnteries[2][1]));
-      setCo2(parseInt(dataEnteries[3][1]));
-      setVoc(parseInt(dataEnteries[4][1]));
-      setTemp(parseInt(dataEnteries[5][1]));
-      setHum(parseInt(dataEnteries[6][1]));
-      setAqi(parseInt(dataEnteries[7][1]));
-
-      setOutPm25(parseInt(dataEnteriesOut[1][1]));
-      setOutPm10(parseInt(dataEnteriesOut[2][1]));
-      setOutCo2(parseInt(dataEnteriesOut[3][1]));
-      setOutVoc(parseInt(dataEnteriesOut[6][1]));
-      setOutTemp(parseInt(dataEnteriesOut[4][1]));
-      setOutHum(parseInt(dataEnteriesOut[5][1]));
+      setPm25(indoor_pm25);
+      setPm10(indoor_pm10);
+      setCo2(indoor_co2);
+      setVoc(indoor_voc);
+      setTemp(indoor_temp);
+      setHum(indoor_hum);
+      setAqi(indoor_aqi);
 
       if (indoor_pm25 <= 12) {
         setPm25ColorAndQuality(["#39c904",'Good']);
@@ -143,20 +128,6 @@ function MainPage() {
         setPm25ColorAndQuality(["#8f3f97","Severe"]);
       } else if (indoor_pm25 > 250) {
         setPm25ColorAndQuality(["#7e0023","Hazardous"]);
-      }
-
-      if (outdoor_pm25 <= 12) {
-        setOutPm25ColorAndQuality(["#39c904",'Good']);
-      } else if (13 <= outdoor_pm25 && outdoor_pm25 <= 35) {
-        setOutPm25ColorAndQuality(["#e6e205",'Moderate']);
-      } else if (36 <= outdoor_pm25 && outdoor_pm25 <= 55) {
-        setOutPm25ColorAndQuality(["#ff7e00","Poor"]);
-      } else if (56 <= outdoor_pm25 && outdoor_pm25 <= 150) {
-        setOutPm25ColorAndQuality(["#f5051d","Unhealthy"]);
-      } else if (151 <= outdoor_pm25 && outdoor_pm25 <= 250) {
-        setOutPm25ColorAndQuality(["#8f3f97","Severe"]);
-      } else if (outdoor_pm25 > 250) {
-        setOutPm25ColorAndQuality(["#7e0023","Hazardous"]);
       }
 
       if (indoor_pm10 <= 54) {
@@ -173,20 +144,6 @@ function MainPage() {
         setPm10ColorAndQuality(["#7e0023","Hazardous"]);
       }
 
-      if (outdoor_pm10 <= 54) {
-        setOutPm10ColorAndQuality(["#39c904",'Good']);
-      } else if (55 <= outdoor_pm10 && outdoor_pm10 <= 154) {
-        setOutPm10ColorAndQuality(["#e6e205",'Moderate']);
-      } else if (155 <= outdoor_pm10 && outdoor_pm10 <= 254) {
-        setOutPm10ColorAndQuality(["#ff7e00","Poor"]);
-      } else if (255 <= outdoor_pm10 && outdoor_pm10 <= 354) {
-        setOutPm10ColorAndQuality(["#f5051d","Unhealthy"]);
-      } else if (355 <= outdoor_pm10 && outdoor_pm10 <= 424) {
-        setOutPm10ColorAndQuality(["#8f3f97","Severe"]);
-      } else if (outdoor_pm10 > 425) {
-        setOutPm10ColorAndQuality(["#7e0023","Hazardous"]);
-      }
-
       if (indoor_co2 <= 750) {
         setCo2ColorAndQuality(["#39c904",'Good']);
       } else if (751 <= indoor_co2 && indoor_co2 <= 841) {
@@ -201,45 +158,7 @@ function MainPage() {
         setCo2ColorAndQuality(["#7e0023","Hazardous"]);
       }
 
-      if (outdoor_co2 <= 750) {
-        setOutCo2ColorAndQuality(["#39c904",'Good']);
-      } else if (751 <= outdoor_co2 && outdoor_co2 <= 841) {
-        setOutCo2ColorAndQuality(["#e6e205",'Moderate']);
-      } else if (842 <= outdoor_co2 && outdoor_co2 <= 900) {
-        setOutCo2ColorAndQuality(["#ff7e00","Poor"]);
-      } else if (901 <= outdoor_co2 && outdoor_co2 <= 1500) {
-        setOutCo2ColorAndQuality(["#f5051d","Unhealthy"]);
-      } else if (1510 <= outdoor_co2 && outdoor_co2 <= 2500) {
-        setOutCo2ColorAndQuality(["#8f3f97","Severe"]);
-      } else if (outdoor_co2 > 2500) {
-        setOutCo2ColorAndQuality(["#7e0023","Hazardous"]);
-      }
-
-      if (indoor_voc <= 40) {
-        setVocColorAndQuality(["#39c904",'Good']);
-      } else if (indoor_voc >= 41 && indoor_voc <= 100) {
-        setVocColorAndQuality(["#e6e205",'Moderate']);
-      } else if (indoor_voc >= 101 && indoor_voc <= 300) {
-        setVocColorAndQuality(["#ff7e00","Poor"]);
-      } else {
-        setVocColorAndQuality(["#f5051d","Unhealthy"]);
-      }
       
-      if(indoor_temp <=10){
-        setTempColorAndQuality(["#008eff",'Too Cold']);
-      }else if(indoor_temp >=11 && indoor_temp <=20){
-        setTempColorAndQuality(["#09e9ff",'Cold']);
-      }
-      else if(indoor_temp >=21 && indoor_temp <=25){
-        setTempColorAndQuality(["#39c904",'Optimal']);
-      }
-      else if(indoor_temp >25 && indoor_temp <=30){
-        setTempColorAndQuality(["#f4b436",'Hot']);
-      }else if(indoor_temp > 30){
-        setTempColorAndQuality(["#f44336",'Too Hot']);
-      }
-
-
       if(indoor_hum < 20){
         setHumColorAndQuality(["#f98224",'Too Dry']);
       }
@@ -271,23 +190,97 @@ function MainPage() {
       else if(indoor_aqi >=301){
         setAqiColorAndQuality(["#7e0023","Hazardous"])
       }
-      let outdoor_temp = parseInt(dataEnteriesOut[4][1]);
-      // aqicn_values.temp == "NA" ? "NA" : parseInt(aqicn_values.temp);
-      let outdoor_hum = parseInt(dataEnteriesOut[5][1]);
-      // aqicn_values.hum == "NA" ? "NA" : parseInt(aqicn_values.hum);
+      
+      if (indoor_voc <= 40) {
+        setVocColorAndQuality(["#39c904",'Good']);
+      } else if (indoor_voc >= 41 && indoor_voc <= 100) {
+        setVocColorAndQuality(["#e6e205",'Moderate']);
+      } else if (indoor_voc >= 101 && indoor_voc <= 300) {
+        setVocColorAndQuality(["#ff7e00","Poor"]);
+      } else {
+        setVocColorAndQuality(["#f5051d","Unhealthy"]);
+      }
+      
+      if(indoor_temp <=10){
+        setTempColorAndQuality(["#008eff",'Too Cold']);
+      }else if(indoor_temp >=11 && indoor_temp <=20){
+        setTempColorAndQuality(["#09e9ff",'Cold']);
+      }
+      else if(indoor_temp >=21 && indoor_temp <=25){
+        setTempColorAndQuality(["#39c904",'Optimal']);
+      }
+      else if(indoor_temp >25 && indoor_temp <=30){
+        setTempColorAndQuality(["#f4b436",'Hot']);
+      }else if(indoor_temp > 30){
+        setTempColorAndQuality(["#f44336",'Too Hot']);
+      }
 
-      // setting the state of outdoor temp
+      let outdoorData = await getOutdoorData(outdoorDeviceId) || [];
+      outdoorData = outdoorData?.msg?.metaData;
+      console.log(outdoorData);
+      const outdoor_pm25 =  outdoorData['PM25'] || outdoorData['PM2_5'] || 'NA';
+      const outdoor_pm10 = outdoorData['PM10'] || 'NA';
+      const outdoor_co2 = outdoorData['CO2'] || 'NA';
+      const outdoor_hum = outdoorData['HUM'] || 'NA';
+      const outdoor_temp = outdoorData['TEMP'] || 'NA';
 
-      if (outdoor_temp == "NA") setOutTemp("NA");
-      else setOutTemp(parseInt(outdoor_temp));
+      setOutPm25(outdoor_pm25);
+      setOutPm10(outdoor_pm10);
+      setOutCo2(outdoor_co2);
+      setOutVoc();
+      setOutTemp(outdoor_temp);
+      setOutHum(outdoor_hum);
 
-      // setting the state of outdoor hum
+     
 
-      if (outdoor_hum == "NA") setOutHum("NA");
-      else setOutHum(parseInt(outdoor_hum));
+      if (outdoor_pm25 <= 12) {
+        setOutPm25ColorAndQuality(["#39c904",'Good']);
+      } else if (13 <= outdoor_pm25 && outdoor_pm25 <= 35) {
+        setOutPm25ColorAndQuality(["#e6e205",'Moderate']);
+      } else if (36 <= outdoor_pm25 && outdoor_pm25 <= 55) {
+        setOutPm25ColorAndQuality(["#ff7e00","Poor"]);
+      } else if (56 <= outdoor_pm25 && outdoor_pm25 <= 150) {
+        setOutPm25ColorAndQuality(["#f5051d","Unhealthy"]);
+      } else if (151 <= outdoor_pm25 && outdoor_pm25 <= 250) {
+        setOutPm25ColorAndQuality(["#8f3f97","Severe"]);
+      } else if (outdoor_pm25 > 250) {
+        setOutPm25ColorAndQuality(["#7e0023","Hazardous"]);
+      }
 
-      // color coding for outdoor temp
+     
 
+      if (outdoor_pm10 <= 54) {
+        setOutPm10ColorAndQuality(["#39c904",'Good']);
+      } else if (55 <= outdoor_pm10 && outdoor_pm10 <= 154) {
+        setOutPm10ColorAndQuality(["#e6e205",'Moderate']);
+      } else if (155 <= outdoor_pm10 && outdoor_pm10 <= 254) {
+        setOutPm10ColorAndQuality(["#ff7e00","Poor"]);
+      } else if (255 <= outdoor_pm10 && outdoor_pm10 <= 354) {
+        setOutPm10ColorAndQuality(["#f5051d","Unhealthy"]);
+      } else if (355 <= outdoor_pm10 && outdoor_pm10 <= 424) {
+        setOutPm10ColorAndQuality(["#8f3f97","Severe"]);
+      } else if (outdoor_pm10 > 425) {
+        setOutPm10ColorAndQuality(["#7e0023","Hazardous"]);
+      }
+
+     
+
+      if (outdoor_co2 <= 750) {
+        setOutCo2ColorAndQuality(["#39c904",'Good']);
+      } else if (751 <= outdoor_co2 && outdoor_co2 <= 841) {
+        setOutCo2ColorAndQuality(["#e6e205",'Moderate']);
+      } else if (842 <= outdoor_co2 && outdoor_co2 <= 900) {
+        setOutCo2ColorAndQuality(["#ff7e00","Poor"]);
+      } else if (901 <= outdoor_co2 && outdoor_co2 <= 1500) {
+        setOutCo2ColorAndQuality(["#f5051d","Unhealthy"]);
+      } else if (1510 <= outdoor_co2 && outdoor_co2 <= 2500) {
+        setOutCo2ColorAndQuality(["#8f3f97","Severe"]);
+      } else if (outdoor_co2 > 2500) {
+        setOutCo2ColorAndQuality(["#7e0023","Hazardous"]);
+      }
+
+     
+     
       if(outdoor_temp <=10){
         setOutTempColorAndQuality(["#008eff",'Too Cold']);
       }else if(outdoor_temp  >=11 && outdoor_temp   <=20){
@@ -395,4 +388,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default RMZCircularDesign;
