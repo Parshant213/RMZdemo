@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
-import { Row, Col, Card, Stack, Carousel, Spinner } from "react-bootstrap";
+import { Card, Carousel } from "react-bootstrap";
 import moment from "moment-timezone";
 import Instruction from "../components/Instriction";
 import Aqi from "../components/Aqi";
@@ -89,7 +88,6 @@ function RMZCircularDesign() {
       if(indoorData || indoorData?.length !== 0){
           indoorData?.sort((a, b) => b.timestamp - a.timestamp);
         }
-      console.log('indoor',indoorData);
       
     
       const indoor_pm25 = indoorData[0]['PM25'] || indoorData[0]['PM2_5'] || 'NA';
