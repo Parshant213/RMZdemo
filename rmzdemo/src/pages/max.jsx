@@ -6,7 +6,7 @@ import maxTowerLogo from '../assets/images/demo/maxTowerLogo.png';
 
 import maxTower from '../assets/images/demo/maxTower.jpg';
 import maxSquare from '../assets/images/demo/maxSquare.jpg';
-import maxHouseOkhla from '../assets/images/demo/maxHouseOkhla.jpg';
+import maxOkhla from '../assets/images/demo/maxHouseOkhla.jpg';
 
 import React, { useState, useEffect, useParams } from "react";
 
@@ -147,7 +147,7 @@ const MAX = () => {
        setBuilding(maxSquare);
     }
     else if(customerName === 'MaxHouseOkhla'){
-         setBuilding(maxHouseOkhla);
+         setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
     }
 
