@@ -6,7 +6,7 @@ import maxTowerLogo from '../assets/images/demo/maxTowerLogo.png';
 
 import maxTower from '../assets/images/demo/maxTower.jpg';
 import maxSquare from '../assets/images/demo/maxSquare.jpg';
-import maxOkhla from '../assets/images/demo/maxHouseOkhla.jpg';
+import maxOkhla from '../assets/images/demo/maxHouse.jpg';
 
 import React, { useState, useEffect, useParams } from "react";
 
@@ -36,7 +36,9 @@ const MAX = () => {
   const [building,setBuilding] = useState('');
   const [pm25, setPm25] = useState("NA");
   const [pm10, setPm10] = useState("NA");
-
+  
+  const [marginTopForcoursal, setMarginTopForcoursal] = useState('25rem');
+  const [marginForTitle , setMarginForTitle] = useState('2rem');
   const [pm25Color, setPm25ColorAndQuality] = useState([]);
   const [pm10Color, setPm10ColorAndQuality] = useState([]);
 
@@ -145,10 +147,14 @@ const MAX = () => {
     else if(customerName === 'MaxSquare'){
        setlogo(maxSquareLogo);
        setBuilding(maxSquare);
+       setMarginForTitle('3rem');
+       setMarginTopForcoursal('30rem');
     }
     else if(customerName === 'MaxHouseOkhla'){
          setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
+         setMarginForTitle('3rem');
+         setMarginTopForcoursal('30rem');
     }
 
     fetchData();
@@ -216,7 +222,7 @@ const MAX = () => {
             style={{
               color: "orange",
               fontWeight: "bold",
-              margin: "2rem",
+              margin: marginForTitle,
             }}
           >
             <div>AIR QUALITY MEASURED TODAY</div>
@@ -257,7 +263,7 @@ const MAX = () => {
           left: "0",
           width: "100%", // Full width
           zIndex: "10", // Ensure it overlaps above other elements
-          marginTop: "25rem",
+          marginTop: marginTopForcoursal,
           fontFamily: "monospace",
         }}
       >
