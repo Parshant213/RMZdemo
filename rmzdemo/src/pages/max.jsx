@@ -69,10 +69,10 @@ const MAX = () => {
       } = await axios.get(outdoorUrl);
 
       const indoor_pm25 =
-        indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || "NA";
+        indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || 0 || "NA";
       const outdoor_pm25 = pm25?.v || "NA";
 
-      const indoor_pm10 = indoorData[0]["PM10"] || "NA";
+      const indoor_pm10 = indoorData[0]["PM10"] || 0 || "NA";
       const outdoor_pm10 = pm10?.v || "NA";
 
       setPm25(indoor_pm25);
@@ -149,6 +149,9 @@ const MAX = () => {
     else if(customerName === 'MaxSquare'){
        setlogo(maxSquareLogo);
        setBuilding(maxSquare);
+       setMarginForTitle('6rem');
+         setMarginTopForcoursal('43rem');
+         setMarginFordate('2rem');
     }
     else if(customerName === 'MaxHouseOkhla'){
          setBuilding(maxOkhla);
