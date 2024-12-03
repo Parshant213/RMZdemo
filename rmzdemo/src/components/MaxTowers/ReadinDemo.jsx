@@ -16,7 +16,7 @@ function ReadingDemo({ parameters }) {
       setHeight(600);
       setWidth(400)
      }
-  });
+  },[]);
 
   return (
     <div
