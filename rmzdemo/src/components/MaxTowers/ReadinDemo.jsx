@@ -29,7 +29,7 @@ function ReadingDemo({ parameters }) {
           })}
         >
           <div style={{ marginTop: -5 }}>{item.parameter}</div>
-          {/* <div style={{ fontWeight: "bold" }}>{item.value}</div> */}
+          <div style={{ fontWeight: "bold" }}>{item.value}</div>
           <div style={{   fontWeight:'bold'  }}>{item.status}</div>
         
         </CircularProgressbarWithChildren>
