@@ -39,6 +39,7 @@ const MAX = () => {
   
   const [marginTopForcoursal, setMarginTopForcoursal] = useState('25rem');
   const [marginForTitle , setMarginForTitle] = useState('2rem');
+  const [marginfordata ,setMarginFordate] = useState('1rem');
   const [pm25Color, setPm25ColorAndQuality] = useState([]);
   const [pm10Color, setPm10ColorAndQuality] = useState([]);
 
@@ -154,9 +155,9 @@ const MAX = () => {
          setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
          setMarginForTitle('6rem');
-         setMarginTopForcoursal('45rem');
-    }
-
+         setMarginTopForcoursal('43rem');
+         setMarginFordate('2rem');
+   }
     fetchData();
 
     const interval = setInterval(() => {

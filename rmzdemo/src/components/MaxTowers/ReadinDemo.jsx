@@ -1,5 +1,5 @@
 // RingGaugeComponent.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -8,6 +8,15 @@ import "react-circular-progressbar/dist/styles.css"; // Import default styles
 
 function ReadingDemo({ parameters }) {
   const percentage = 100;
+  const customerName = window.location.href.split("/")[5];
+  const [height , setHeight] = useState(200);
+  const [width , setWidth] = useState(300);
+  useEffect(()=>{ 
+    if(customerName === 'MaxHouseOkhla'){
+      setHeight(600);
+      setWidth(400)
+     }
+  });
 
   return (
     <div
@@ -19,7 +28,7 @@ function ReadingDemo({ parameters }) {
       }}
     >
     {parameters.map((item)=>{
-        return  <div style={{ width: 200, height: 300 , display:"flex",flexDirection:"column",alignItems:"center" }}>
+        return  <div style={{ width:width , height: height  , display:"flex",flexDirection:"column",alignItems:"center" }}>
         <CircularProgressbarWithChildren
           value={percentage}
           styles={buildStyles({
