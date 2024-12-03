@@ -202,7 +202,7 @@ const MAX = () => {
               height: "9rem",
               width: "20rem",
               background: "transparent",
-              margin:"1rem"
+              margin:"-0.7rem"
             }}
           />
         </div>
@@ -250,8 +250,8 @@ const MAX = () => {
       >
         <div
           style={{
-            height: "50vh", // Adjust the height of the box
-            width: "90vw", // Adjust the width of the box
+            height: "43vh", // Adjust the height of the box
+            width: "88vw", // Adjust the width of the box
             backgroundImage: `url(${building})`,
             backgroundSize: "cover", // Ensures the image covers the box
             backgroundPosition: "center",
