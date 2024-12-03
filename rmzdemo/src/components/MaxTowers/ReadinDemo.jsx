@@ -13,8 +13,8 @@ function ReadingDemo({ parameters }) {
   const [width , setWidth] = useState(300);
   useEffect(()=>{ 
     if(customerName === 'MaxHouseOkhla'){
-      setHeight(600);
-      setWidth(400)
+      setHeight(400);
+      setWidth(300)
      }
   },[]);
 
