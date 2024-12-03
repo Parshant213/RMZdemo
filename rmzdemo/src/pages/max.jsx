@@ -148,8 +148,6 @@ const MAX = () => {
     else if(customerName === 'MaxSquare'){
        setlogo(maxSquareLogo);
        setBuilding(maxSquare);
-       setMarginForTitle('5rem');
-       setMarginTopForcoursal('40rem');
     }
     else if(customerName === 'MaxHouseOkhla'){
          setBuilding(maxOkhla);
@@ -157,6 +155,10 @@ const MAX = () => {
          setMarginForTitle('6rem');
          setMarginTopForcoursal('43rem');
          setMarginFordate('2rem');
+   }
+   else if(customerName === 'MaxHouseOkhlaWeb'){
+    setBuilding(maxOkhla);
+    setlogo(maxEstateLogo);
    }
     fetchData();
 
