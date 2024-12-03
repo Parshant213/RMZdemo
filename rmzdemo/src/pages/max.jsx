@@ -154,7 +154,7 @@ const MAX = () => {
          setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
          setMarginForTitle('5rem');
-         setMarginTopForcoursal('45srem');
+         setMarginTopForcoursal('47rem');
     }
 
     fetchData();
@@ -195,6 +195,7 @@ const MAX = () => {
               height: "9rem",
               width: "20rem",
               background: "transparent",
+              marginTop:"1rem"
             }}
           />
         </div>
