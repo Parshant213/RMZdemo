@@ -28,6 +28,7 @@ const coordinates = {
     long: 77.3837146,
   },
   "MaxHouseOkhla": { lat: 28.556816, long: 77.2642617 },
+  "MaxHouseOkhlaWeb": { lat: 28.556816, long: 77.2642617 },
 };
 const MAX = () => {
   const customerName = window.location.href.split("/")[5];
