@@ -150,14 +150,14 @@ const MAX = () => {
        setlogo(maxSquareLogo);
        setBuilding(maxSquare);
        setMarginForTitle('6rem');
-         setMarginTopForcoursal('34rem');
+        setMarginTopForcoursal('34rem');
          setMarginFordate('2rem');
     }
     else if(customerName === 'MaxHouseOkhla'){
          setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
          setMarginForTitle('6rem');
-         setMarginTopForcoursal('43rem');
+         setMarginTopForcoursal('34rem');
          setMarginFordate('2rem');
    }
    else if(customerName === 'MaxHouseOkhlaWeb'){
@@ -202,7 +202,7 @@ const MAX = () => {
               height: "9rem",
               width: "20rem",
               background: "transparent",
-              marginTop:"1rem"
+              margin:"1rem"
             }}
           />
         </div>
