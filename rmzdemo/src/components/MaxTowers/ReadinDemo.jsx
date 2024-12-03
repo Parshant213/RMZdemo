@@ -9,7 +9,7 @@ import "react-circular-progressbar/dist/styles.css"; // Import default styles
 function ReadingDemo({ parameters }) {
   const percentage = 100;
   const customerName = window.location.href.split("/")[5];
-  const [height , setHeight] = useState(200);
+  const [height , setHeight] = useState(400);
   const [width , setWidth] = useState(300);
   useEffect(()=>{ 
     if(customerName === 'MaxHouseOkhla'){
