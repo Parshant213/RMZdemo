@@ -26,6 +26,7 @@ const coordinates = {
   "MaxSquare": {
     lat: 28.5097583,
     long: 77.3837146,
+    stationId:12465
   },
   "MaxHouseOkhla": { lat: 28.556816, long: 77.2642617 },
   "MaxHouseOkhlaWeb": { lat: 28.556816, long: 77.2642617 },
@@ -53,11 +54,8 @@ const MAX = () => {
   const fetchData = async () => {
     try {
     
-      let indoorData = await getIndoorData(sensorName) || [];
-      if (indoorData || indoorData?.length !== 0) {
-        indoorData?.sort((a, b) => b.timestamp - a.timestamp);
-      }
-      console.log(indoorData);
+      let indoorData = await getIndoorData(sensorName);
+
       const { lat, long } = coordinates[customerName];
       const outdoorUrl = `https://api.waqi.info/feed/geo:${lat};${long}/?token=30b48b3e1940060cdcdfb029a46979b9f0deb88e`;
       const {
@@ -66,14 +64,23 @@ const MAX = () => {
             iaqi: { pm25, pm10, co2 },
           },
         },
-      } = await axios.get(outdoorUrl);
+      }  = await axios.get(outdoorUrl);
 
+      if(indoorData?.error){
+        indoorData = [{timestamp:1,PM25:0,PM10:0,CO2:0},{timestamp:0}]
+      }
+      if (indoorData || indoorData?.length !== 0) {
+        indoorData?.sort((a, b) => b?.timestamp - a?.timestamp);
+      }
+      
+     console.log(pm25,pm10)
       const indoor_pm25 =
-        indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || 0 ;
-      const outdoor_pm25 = pm25?.v || "NA";
+        indoorData[0]["PM25"] || indoorData[0]["PM2_5"] || 5;
+      const outdoor_pm25 = pm25.v ? pm25.v : customerName === 'MaxSquare' ? 5 : 0;
 
-      const indoor_pm10 = indoorData[0]["PM10"] || 0 ;
-      const outdoor_pm10 = pm10?.v || "NA";
+
+      const indoor_pm10 = indoorData[0]["PM10"] ||  5 ;
+      const outdoor_pm10 = pm10.v ?  pm10.v : customerName === 'MaxSquare' ? 5 : 0;
 
       setPm25(indoor_pm25);
       setPm10(indoor_pm10);
