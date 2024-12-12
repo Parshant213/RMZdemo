@@ -164,7 +164,7 @@ const MAX = () => {
          setBuilding(maxOkhla);
          setlogo(maxEstateLogo);
          setMarginForTitle('6rem');
-         setMarginTopForcoursal('34rem');
+         setMarginTopForcoursal('28rem');
          setMarginFordate('2rem');
    }
    else if(customerName === 'MaxHouseOkhlaWeb'){
